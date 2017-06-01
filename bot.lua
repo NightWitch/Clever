@@ -336,7 +336,7 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 				elseif text:match("^(/reload)$") then
 					return reload(msg.chat_id_,msg.id_)
 				elseif text:match("^بروزرسانی ربات$") then
-					io.popen("git pull"):read("*all")
+					io.popen("git fetch --all && git reset --hard origin && git pull origin  && chmod +x bot"):read("*all")
 					local text,ok = io.open("bot.lua",'r'):read('*a'):gsub("BOT%-ID",BOT-ID)
 					io.open("bot-BOT-ID.lua",'w'):write(text):close()
 					return reload(msg.chat_id_,msg.id_)
