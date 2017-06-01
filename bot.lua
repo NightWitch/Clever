@@ -437,19 +437,19 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 					local matches = text:match("^افزودن با پیام (.*)$")
 					if matches == "روشن" then
 						redis:set("botBOT-IDaddmsg", true)
-						return send(msg.chat_id_, msg.id_, "<i>پیام افزودن مخاطب فعال شد</i>")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات هر مخاطبی ذخیره کند بلافاصله پیام میدهد.")
 					elseif matches == "خاموش" then
 						redis:del("botBOT-IDaddmsg")
-						return send(msg.chat_id_, msg.id_, "<i>پیام افزودن مخاطب غیرفعال شد</i>")
+						return send(msg.chat_id_, msg.id_, "ارسال پیام پس از افزودن مخاطب توسط ربات سین آپ شماره BOT-ID غیر فعال شد.")
 					end
 				elseif text:match("^(افزودن با شماره) (.*)$") then
 					local matches = text:match("افزودن با شماره (.*)$")
 					if matches == "روشن" then
 						redis:set("botBOT-IDaddcontact", true)
-						return send(msg.chat_id_, msg.id_, "<i>ارسال شماره هنگام افزودن مخاطب فعال شد</i>")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات هر مخاطبی ذخیره کند بلافاصله شماره خود را به اشتراک میگذارد.")
 					elseif matches == "خاموش" then
 						redis:del("botBOT-IDaddcontact")
-						return send(msg.chat_id_, msg.id_, "<i>ارسال شماره هنگام افزودن مخاطب غیرفعال شد</i>")
+						return send(msg.chat_id_, msg.id_, "اشتراک گذاری شماره پس از افزودن مخاطب توسط ربات سین آپ شماره BOT-ID غیرفعال شد.")
 					end
 				elseif text:match("^(تنظیم پیام افزودن مخاطب) (.*)") then
 					local matches = text:match("^تنظیم پیام افزودن مخاطب (.*)")
@@ -469,10 +469,10 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 					local matches = text:match("^پاسخگوی خودکار (.*)$")
 					if matches == "روشن" then
 						redis:set("botBOT-IDautoanswer", true)
-						return send(msg.chat_id_, 0, "<i>پاسخگویی خودکار تبلیغ گر فعال شد</i>")
+						return send(msg.chat_id_, 0, "حالت پاسخ گویی خودکار فعال شد از این پس ربات به کلمات از پیش تعیین شده پاسخ میدهد")
 					elseif matches == "خاموش" then
 						redis:del("botBOT-IDautoanswer")
-						return send(msg.chat_id_, 0, "<i>حالت پاسخگویی خودکار تبلیغ گر غیر فعال شد.</i>")
+						return send(msg.chat_id_, 0, "حالت پاسخ گویی خودکار ربات سین آپ شماره BOT-ID غیرفعال شد.")
 					end
 				elseif text:match("^(تازه سازی)$")then
 					local list = {redis:smembers("botBOT-IDsupergroups"),redis:smembers("botBOT-IDgroups")}
@@ -495,7 +495,7 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 								end, {id=b})
 							end
 					end
-					return send(msg.chat_id_,msg.id_,"<i>تازه‌سازی آمار تبلیغ‌گر شماره </i><code> BOT-ID </code> با موفقیت انجام شد.")
+					return send(msg.chat_id_,msg.id_,"فرایند تازه سازی ربات سین آپ شماره BOT-ID موفقیت آمیز بود.")
 				elseif text:match("^(وضعیت)$") then
 					local s =  redis:get("botBOT-IDoffjoin") and 0 or redis:get("botBOT-IDmaxjoin") and redis:ttl("botBOT-IDmaxjoin") or 0
 					local ss = redis:get("botBOT-IDofflink") and 0 or redis:get("botBOT-IDmaxlink") and redis:ttl("botBOT-IDmaxlink") or 0
@@ -561,9 +561,9 @@ Channel:@CMSecurityCH]]
 					if matches:match("^(خصوصی)") then
 						naji = "botBOT-IDusers"
 					elseif matches:match("^(گروه)$") then
-						naji = "botBOT-IDgroups"
+				naji = "botBOT-IDgroups"
 elseif matches:match("^(همه)$") then
-						naji = "botBOT-IDall"
+			naji = "botBOT-IDall"
 					elseif matches:match("^(سوپرگروه)$") then
 						naji = "botBOT-IDsupergroups"
 					else
@@ -581,7 +581,7 @@ elseif matches:match("^(همه)$") then
 							from_background_ = 1
 						}, dl_cb, nil)
 					end
-					return send(msg.chat_id_, msg.id_, "<i>با موفقیت فرستاده شد</i>")
+					return send(msg.chat_id_, msg.id_, "با موفقیت ارسال شد")
 				elseif text:match("^(ارسال به سوپرگروه) (.*)") then
 					local matches = text:match("^ارسال به سوپرگروه (.*)")
 					local dir = redis:smembers("botBOT-IDsupergroups")
@@ -697,7 +697,7 @@ elseif text:match("^(ارسال به همه) (.*)") then
 							}, dl_cb, nil)
 						end	
 					end
-					return send(msg.chat_id_, msg.id_, "<i>کاربر مورد نظر به تمام گروه های من دعوت شد</i>")
+					return send(msg.chat_id_, msg.id_, "کاربر با شناسه عددی معین شده به تمامی گروه های ربات سین آپ شماره BOT-ID دعوت شد.")
 				elseif (text:match("^(انلاین)$") and not msg.forward_info_)then
 					return tdcli_function({
 						ID = "ForwardMessages",
