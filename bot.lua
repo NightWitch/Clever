@@ -339,7 +339,7 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 					io.popen("git fetch --all && git reset --hard origin && git pull origin  && chmod +x bot"):read("*all")
 					local text,ok = io.open("bot.lua",'r'):read('*a'):gsub("BOT%-ID",BOT-ID)
 					io.open("bot-BOT-ID.lua",'w'):write(text):close()
-					return reload(msg.chat_id_,msg.id_)
+					return reload(msg.chat_id_,msg.id_, "بروز رسانی ربات سین آپ شماره BOT-ID موفقیت آمیز بود،ربات هم اکنون با آخرین نسخه همگام است.)
 				elseif text:match("^همگام سازی با تبچی$") then
 					local botid = BOT-ID - 1
 					redis:sunionstore("botBOT-IDall","tabchi:"..tostring(botid)..":all")
