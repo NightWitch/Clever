@@ -510,7 +510,7 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
      local offlink = redis:get("botBOT-IDofflink") and "غیرفعال⚫️" or "فعال⚪️"
      local nlink = redis:get("botBOT-IDlink") and "فعال⚪️" or "غیرفعال⚫️"
      local contacts = redis:get("botBOT-IDsavecontacts") and "فعال⚪️" or "غیرفعال⚫️"
-					local txt = "💠وضعیت کلی ربات سین آپ شماره BOT-ID\n\n🔰عضویت خودکار\n\n"..tostring(offjoin).."\n\n🔰تایید لینک خودکار\n \n"..tostring(offlink).."\n \n🔰تشخیص لینک\n \n"..tostring(nlink).."\n \n🔰افزودن خودکار مخاطب\n \n"..tostring(contacts).."\n \n🔰پاسخ گوی خودکار\n\n"..tostring(autoanswer).."\n \n🔰افزودن مخاطب با شماره\n\n"..tostring(numadd).."\n\n🔰افزودن مخاطب با پیام\n\n"..tostring(msgadd).."\n➖➖➖➖➖➖➖➖\n\n🔸پیام افزودن مخاطب:\n\n"..tostring(txtadd).."\n➖➖➖➖➖➖➖➖\n🔹لینک های در انتظار عضویت:\n\n"..tostring(glinks).."\n\n🔹لینک های ذخیره شده:\n\n"..tostring(links).."\n\n🔹زمان باقی مانده تا عضویت مجدد:\n\n"..tostring(s).."ثانیه\n\n🔹لینک های در انتظار تایید:\n\n"..tostring(wlinks).."\n\n🔹زمان باقی مانده تا تایید لینک:\n\n"..tostring(ss).."ثانیه\n🌚Created By:@MrJavi\n🔰Channel:@CMSecurityCH"
+					local txt = "💠وضعیت کلی ربات سین آپ شماره BOT-ID\n\n🔰عضویت خودکار\n\n"..tostring(offjoin).."\n\n🔰تایید لینک خودکار\n \n"..tostring(offlink).."\n \n🔰تشخیص لینک\n \n"..tostring(nlink).."\n \n🔰افزودن خودکار مخاطب\n \n"..tostring(contacts).."\n \n🔰پاسخ گوی خودکار\n\n"..tostring(autoanswer).."\n \n🔰افزودن مخاطب با شماره\n\n"..tostring(numadd).."\n\n🔰افزودن مخاطب با پیام\n\n"..tostring(msgadd).."\n➖➖➖➖➖➖➖➖\n\n🔸پیام افزودن مخاطب:\n\n"..tostring(txtadd).."\n➖➖➖➖➖➖➖➖\n🔹لینک های در انتظار عضویت:\n\n"..tostring(glinks).."\n\n🔹لینک های ذخیره شده:\n\n"..tostring(links).."\n\n🔹زمان باقی مانده تا عضویت مجدد:\n\n"..tostring(s).."ثانیه\n\n🔹لینک های در انتظار تایید:\n\n"..tostring(wlinks).."\n\n🔹زمان باقی مانده تا تایید لینک:\n\n"..tostring(ss).."ثانیه\n🌚Created By:@MrJavi\n 🔰Channel:@CMSecurityCH"
 					return send(msg.chat_id_, 0, txt)
 				elseif text:match("^(امار)$") or text:match("^(آمار)$") then
 					local gps = redis:scard("botBOT-IDgroups")
@@ -552,7 +552,7 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 
 
 🌚Creator:@MrJavi
-🔰 Channel:@CMSecurityCH]]
+🔰Channel:@CMSecurityCH]]
 	
 	return send(msg.chat_id_, 0, text)
 				elseif (text:match("^(ارسال به) (.*)$") and msg.reply_to_message_id_ ~= 0) then
