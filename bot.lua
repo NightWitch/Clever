@@ -7,9 +7,9 @@ function get_admin ()
 	if redis:get('botBOT-IDadminset') then
 		return true
 	else
-   		print("\n\27[32m  لازمه کارکرد صحیح ، فرامین و امورات مدیریتی ربات تبلیغ گر <<\n                    تعریف کاربری به عنوان مدیر است\n\27[34m                   ایدی خود را به عنوان مدیر وارد کنید\n\27[32m    شما می توانید از ربات زیر شناسه عددی خود را بدست اورید\n\27[34m        ربات:       @id_ProBot")
-    	print("\n\27[32m >> Tabchi Bot need a fullaccess user (ADMIN)\n\27[34m Imput Your ID as the ADMIN\n\27[32m You can get your ID of this bot\n\27[34m                 @id_ProBot")
-    	print("\n\27[36m                      : شناسه عددی ادمین را وارد کنید << \n >> Imput the Admin ID :\n\27[31m                 ")
+   		print("\n\27[32m  لازمه کارکرد صحیح ، فرامین و امورات مدیریتی ربات سین آپ <<\n                    تعریف کاربری به عنوان مدیر است\n\27[34m                   ایدی خود را به عنوان مدیر وارد کنید\n\27[32m    شما می توانید از ربات زیر شناسه عددی خود را بدست اورید\n\27[34m        ربات:       @id_ProBot")
+    	print("\n\27[32m >> Tabchi Bot need a fullaccess user (ADMIN)\n\27[34m Imput Your ID as the ADMIN\n\27[32m You can get your ID of this bot\n\27[34m                 @userinfobot")
+    	print("\n\27[36m                      : شناسه عددی ادمین را وارد342881427 کنید << \n >> Imput the Admin ID :\n\27[31m                 ")
     	local admin=io.read()
 		redis:del("botBOT-IDadmin")
     	redis:sadd("botBOT-IDadmin", admin)
@@ -197,13 +197,13 @@ function tdcli_update_callback(data)
 					local matches = text:match("^حذف لینک (.*)$")
 					if matches == "عضویت" then
 						redis:del("botBOT-IDgoodlinks")
-						return send(msg.chat_id_, msg.id_, "لیست لینک های در انتظار عضویت پاکسازی شد.")
+						return send(msg.chat_id_, msg.id_, "تمامی لینک های در انتظار عضویت پاک شدند.")
 					elseif matches == "تایید" then
 						redis:del("botBOT-IDwaitelinks")
-						return send(msg.chat_id_, msg.id_, "لیست لینک های در انتظار تایید پاکسازی شد.")
+						return send(msg.chat_id_, msg.id_, "تمامی لینک های در انتظار تایید پاک شدند.")
 					elseif matches == "ذخیره شده" then
 						redis:del("botBOT-IDsavedlinks")
-						return send(msg.chat_id_, msg.id_, "لیست لینک های ذخیره شده پاکسازی شد.")
+						return send(msg.chat_id_, msg.id_, "تمامی لینک های ذخیره شده پاک شدند.")
 					end
 				elseif text:match("^(حذف کلی لینک) (.*)$") then
 					local matches = text:match("^حذف کلی لینک (.*)$")
@@ -212,21 +212,21 @@ function tdcli_update_callback(data)
 						for i, v in ipairs(list) do
 							redis:srem("botBOT-IDalllinks", v)
 						end
-						send(msg.chat_id_, msg.id_, "لیست لینک های در انتظار عضویت بطورکلی پاکسازی شد.")
+						send(msg.chat_id_, msg.id_, "تمامی لینک های در انتظار عضویت به طور کلی پاک شدند.")
 						redis:del("botBOT-IDgoodlinks")
 					elseif matches == "تایید" then
 						local list = redis:smembers("botBOT-IDwaitelinks")
 						for i, v in ipairs(list) do
 							redis:srem("botBOT-IDalllinks", v)
 						end
-						send(msg.chat_id_, msg.id_, "لیست لینک های در انتظار تایید بطورکلی پاکسازی شد.")
+						send(msg.chat_id_, msg.id_, "تمامی لینک های در انتظار تایدد به طور کلی پاک شدند.")
 						redis:del("botBOT-IDwaitelinks")
 					elseif matches == "ذخیره شده" then
 						local list = redis:smembers("botBOT-IDsavedlinks")
 						for i, v in ipairs(list) do
 							redis:srem("botBOT-IDalllinks", v)
 						end
-						send(msg.chat_id_, msg.id_, "لیست لینک های ذخیره شده بطورکلی پاکسازی شد.")
+						send(msg.chat_id_, msg.id_, "تمامی لینک های ذخیره شده به طور کلی پاک شدند.")
 						redis:del("botBOT-IDsavedlinks")
 					end
 				elseif text:match("^(توقف) (.*)$") then
@@ -234,34 +234,34 @@ function tdcli_update_callback(data)
 					if matches == "عضویت" then	
 						redis:set("botBOT-IDmaxjoin", true)
 						redis:set("botBOT-IDoffjoin", true)
-						return send(msg.chat_id_, msg.id_, "فرایند عضویت خودکار متوقف شد.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات در هیچ گروهی عضو نمیشود.")
 					elseif matches == "تایید لینک" then	
 						redis:set("botBOT-IDmaxlink", true)
 						redis:set("botBOT-IDofflink", true)
-						return send(msg.chat_id_, msg.id_, "فرایند تایید لینک در های در انتظار متوقف شد.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات هیچ لینکی را تایید نمی کند.")
 					elseif matches == "شناسایی لینک" then	
 						redis:del("botBOT-IDlink")
-						return send(msg.chat_id_, msg.id_, "فرایند شناسایی لینک متوقف شد.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات هیچ لینکی را شناسایی نمی کند.")
 					elseif matches == "افزودن مخاطب" then	
 						redis:del("botBOT-IDsavecontacts")
-						return send(msg.chat_id_, msg.id_, "فرایند افزودن خودکار مخاطبین به اشتراک گذاشته شده متوقف شد.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات هبیچ رباتی را ذخیره نمی کند.")
 					end
 				elseif text:match("^(شروع) (.*)$") then
 					local matches = text:match("^شروع (.*)$")
 					if matches == "عضویت" then	
 						redis:del("botBOT-IDmaxjoin")
 						redis:del("botBOT-IDoffjoin")
-						return send(msg.chat_id_, msg.id_, "فرایند عضویت خودکار فعال شد.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات به طور خودکار در گروه ها عضو میشود.")
 					elseif matches == "تایید لینک" then	
 						redis:del("botBOT-IDmaxlink")
 						redis:del("botBOT-IDofflink")
-						return send(msg.chat_id_, msg.id_, "فرایند تایید لینک های در انتظار فعال شد.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات ابتدا لینک را تایید کرده و سپس در آن عضو میشود.")
 					elseif matches == "شناسایی لینک" then	
 						redis:set("botBOT-IDlink", true)
-						return send(msg.chat_id_, msg.id_, "فرایند شناسایی لینک فعال شد.")
+						return send(msg.chat_id_, msg.id_, "شناسایی لینک توسط ربات سین آپ شماره BOT-ID فعال شد.")
 					elseif matches == "افزودن مخاطب" then	
 						redis:set("botBOT-IDsavecontacts", true)
-						return send(msg.chat_id_, msg.id_, "فرایند افزودن خودکار مخاطبین به اشتراک  گذاشته شده فعال شد.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات هر مخاطبی که ببیند ذخیره میکند.")
 					end
 elseif text:match("^(حداکثر گروه) (%d+)$") then
      local matches = text:match("%d+")
