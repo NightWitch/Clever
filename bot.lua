@@ -16,7 +16,7 @@ function get_admin ()
 		redis:set('botBOT-IDadminset',true)
     	return print("\n\27[36m     ADMIN ID |\27[32m ".. admin .." \27[36m| شناسه ادمین")
 	end
-end 
+end
 function get_bot (i, naji)
 	function bot_info (i, naji)
 		redis:set("botBOT-IDid",naji.id_)
