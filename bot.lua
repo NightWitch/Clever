@@ -552,7 +552,7 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 
 
 🌚Creator:@MrJavi
-🔰Channel:@CMSecurityCH]]
+Channel:@CMSecurityCH]]
 	
 	return send(msg.chat_id_, 0, text)
 				elseif (text:match("^(ارسال به) (.*)$") and msg.reply_to_message_id_ ~= 0) then
