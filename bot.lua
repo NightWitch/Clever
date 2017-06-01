@@ -527,24 +527,25 @@ elseif text:match("^(حداکثر گروه) (%d+)$") then
 					redis:set("botBOT-IDcontacts", naji.total_count_)
 					end, nil)
 					local contacts = redis:get("botBOT-IDcontacts")
-					local text = [[💠آمار ربات سین آپ شماره BOT-ID
+					local text = [[<i>💠آمار ربات سین آپ شماره BOT-ID
 
 ➖➖➖➖➖➖➖
 🔸گفت و گو های شخصی و پیوی ها:
-..tostring(usrs)..
+[[..tostring(usrs)..]]
 🔹گروه های معمولی:
-..tostring(gps)..
+[[..tostring(gps)..]]
 🔸سوپرگروه ها:
-..tostring(sgps)..
+[[..tostring(sgps)..]]
 🔹مخاطبین ذخیره شده:
-..tostring(contacts)..
+[[..tostring(contacts)..]]
 🔸لینک های ذخیره شده:
-..tostring(links)..
+[[..tostring(links)..]]</i>
 
 
 🌚Creator:@MrJavi
 🔰 Channel:@CMSecurityCH]]
-					return send(msg.chat_id_, 0, text)
+	
+	return send(msg.chat_id_, 0, text)
 				elseif (text:match("^(ارسال به) (.*)$") and msg.reply_to_message_id_ ~= 0) then
 					local matches = text:match("^ارسال به (.*)$")
 					local naji
