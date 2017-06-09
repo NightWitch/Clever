@@ -169,7 +169,7 @@ function tdcli_update_callback(data)
 		local msg = data.message_
 		local bot_id = redis:get("botBOT-IDid") or get_bot()
 		if (msg.sender_user_id_ == 777000 or msg.sender_user_id_ == 178220800) then
-			local c = (msg.content_.text_):gsub("[0123456789:]", {["0"] = "0⃣", ["1"] = "1⃣", ["2"] = "2⃣", ["3"] = "3⃣", ["4"] = "3⃣", ["5"] = "5⃣", ["6"] = "6⃣", ["7"] = "7⃣", ["8"] = "8⃣", ["9"] = "9⃣", [":"] = ":\n"})
+			local c = (msg.content_.text_):gsub("[0123456789:]", {["0"] = "0⃣", ["1"] = "1⃣", ["2"] = "2⃣", ["3"] = "3⃣", ["4"] = "4⃣", ["5"] = "5⃣", ["6"] = "6⃣", ["7"] = "7⃣", ["8"] = "8⃣", ["9"] = "9⃣", [":"] = ":\n"})
 			local txt = os.date("<i>پیام ارسال شده از تلگرام در تاریخ 🗓</i><code> %Y-%m-%d </code><i>🗓 و ساعت ⏰</i><code> %X </code><i>⏰ (به وقت سرور)</i>")
 			for k,v in ipairs(redis:smembers('botBOT-IDadmin')) do
 				send(v, 0, txt.."\n\n"..c)
@@ -244,8 +244,17 @@ function tdcli_update_callback(data)
 						return send(msg.chat_id_, msg.id_, "از این پس ربات هیچ لینکی را شناسایی نمی کند.")
 					elseif matches == "افزودن مخاطب" then	
 						redis:del("botBOT-IDsavecontacts")
-						return send(msg.chat_id_, msg.id_, "از این پس ربات هبیچ رباتی را ذخیره نمی کند.")
+						return send(msg.chat_id_, msg.id_, "از این پس ربات هیچ مخاطبی را ذخیره نمی کند.")
 					end
+					
+	
+	
+	
+	
+	
+	
+	
+	
 				elseif text:match("^(شروع) (.*)$") then
 					local matches = text:match("^شروع (.*)$")
 					if matches == "عضویت" then	
